@@ -4,15 +4,80 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tic Tac Toe</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&family=Roboto&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/modern-normalize.min.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <header>
-    <h1>TIC TAC TOE</h1>
+    <h1><span class="tic">TIC</span> <span class="tac">TAC</span> <span class="toe">TOE</span></h1>
   </header>
 
   <main>
+    <!-- New Game Modal -->
+    <div id="new-game-modal" class="modal">
+      <div class="modal-content">
+
+        <h2>NEW GAME</h2>
+
+        <div class="sep"></div>
+        <div class="create-players">
+          <div class="custom-player">
+            <h3 class="player-one">Player One</h3>
+            <label class="player-name-label" for="player1-name">NAME</label>
+            <input type="text" name="player1" class="player-name" id="player1-name"  placeholder="Type your name">
+            <p>APPEARANCE</p>
+            <div class="marks">
+              <div class="mark"></div>
+              <div class="mark"></div>
+              <div class="mark"></div>
+              <div class="mark"></div>
+            </div>
+            <p>MARK</p>
+            <div class="marks">
+              <div class="mark"></div>
+              <div class="mark"></div>
+              <div class="mark"></div>
+              <div class="mark"></div>
+            </div>
+          </div>
+          <div class="custom-player">
+            <div class="player-two">
+              <button class="player-two-button"><h3>Choose</h3></button>
+              <div class="player-two-list">
+                <h3>Human</h3>
+                <h3>Bot</h3>
+              </div>
+            </div>
+
+            <label class="player-name-label" for="player-two-name">NAME</label>
+            <input type="text" name="player-two" class="player-name" id="player-two-name" placeholder="Type your name">
+            <p>APPEARANCE</p>
+            <div class="marks">
+              <div class="mark"></div>
+              <div class="mark"></div>
+              <div class="mark"></div>
+              <div class="mark"></div>
+            </div>
+            <p>MARK</p>
+            <div class="marks">
+              <div class="mark"></div>
+              <div class="mark"></div>
+              <div class="mark"></div>
+              <div class="mark"></div>
+            </div>
+          </div>
+        </div>
+        <div class="sep"></div>
+
+        <div class="button-right">
+          <button class="reset" type="button">RESET</button><button id="start-game" type="submit" href="#">START GAME</button>
+        </div>
+
+      </div>
+    </div>
+    <!-- /Modal -->
     <div id="game-container"></div>
   </main>
 

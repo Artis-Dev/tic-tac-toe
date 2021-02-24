@@ -1,30 +1,245 @@
 body {
-  background-color: #9B5DE5;
+  background-color: #3D405B;
+  font-family: 'Roboto', sans-serif;
+  color: #3D405B;
+}
+
+h1, h2, h3 {
+  font-family: 'Josefin Sans', sans-serif;
 }
 
 header h1 {
-  text-align: center;
+  position: relative;
   font-size: 52px;
-  color: #FEE440
+  text-align: center;
+  z-index: 2;
 }
 
+.tic { color: #E07A5F; }
+.tac { color: #F2CC8F; }
+.toe { color: #81B29A; }
+
 main {
-  text-align: center;
-  margin-top: 100px;
+  margin-top: 40px;
 }
+
+/* New Game modal */
+.modal {
+  display: block;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0 20px;
+  background-color: #3D405B;
+  overflow: auto;
+  z-index: 1;
+}
+
+.modal-content {
+  max-width: 800px;
+  margin: 135px auto 50px;
+  padding: 16px;
+  background-color: #F4F1DE;
+  border: solid 1px rgba(0,0,0,.15);
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  animation-name: fadeIn;
+  animation-duration: .3s;
+}
+@keyframes fadeIn {
+  from {opacity: 0}
+  to {opacity: 1}
+}
+
+.modal h2 {
+  margin: 0;
+  text-align: center;
+}
+
+.sep {
+  margin: 16px 0;
+  border-bottom: solid 1px rgba(0,0,0,.15);
+}
+
+#start-game,
+.reset {
+  padding: 8px 12px;
+  border: solid 1px rgba(0,0,0,.15);
+  color: #F4F1DE;
+  cursor: pointer;
+  transition: all .3s;
+}
+
+.modal .button-right {
+  text-align: right;
+}
+
+#start-game {
+  margin-left: 16px;
+  background-color: #69A387;
+}
+#start-game:hover {
+  background-color: #578E74;
+}
+
+.reset {
+  background-color: #F2CC8F;
+  color: #3D405B;
+}
+
+.reset:hover {
+  background-color: #EDB862;
+}
+
+/* Characters creation */
+.create-players {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 16px 0;
+}
+
+.custom-player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 1 380px;
+}
+
+.custom-player h3 {
+  margin: 0;
+}
+
+.custom-player:first-child {
+  border-right: solid 1px rgba(0,0,0,.15);
+}
+
+.custom-player:last-child {
+  padding-left: 16px;
+}
+
+.player-name {
+  width: 215px;
+  padding: 4px 8px;
+  background-color: #F4F1DE;
+  border: solid 1px rgba(0,0,0,.15);
+  border-radius: 0;
+  color: #3D405B;
+  outline: none;
+  transition: all .3s;
+}
+
+.player-name:focus {
+  border: solid 1px #EDB862;
+  transition: all .3s;
+}
+
+.player-name-label {
+  margin-top: 32px;
+  margin-bottom: 16px;
+}
+
+.player-one {
+  padding: 12px 16px;
+  background-color: #69A387;
+  border: solid 1px rgba(0,0,0,.15);
+  color: #F4F1DE;
+  cursor: default;
+  user-select: none;
+}
+
+/* Player two dropdown */
+.player-two {
+  display: inline-block;
+  position: relative;
+}
+
+.player-two:hover .player-two-list {
+  display: block;
+}
+
+.player-two:hover .player-two-button {
+  background-color: #EDB862;
+  transition: all .3s;
+}
+
+.player-two-button {
+  padding: 12px 16px;
+  background-color: #F2CC8F;
+  color: #3D405B;
+  border: solid 1px rgba(0,0,0,.15);
+  cursor: pointer;
+  transition: all .3s;
+}
+
+.player-two-list {
+  display: none;
+  position: absolute;
+  min-width: 97px;
+  background-color: #F2CC8F;
+  border: solid 1px rgba(0,0,0,.15);
+  border-top: none;
+  z-index: 1;
+}
+
+.player-two-list h3 {
+  display: block;
+  padding: 12px 16px;
+  color: #3D405B;
+  text-decoration: none;
+  transition: all .3s;
+}
+
+.player-two-list h3:hover {
+  background-color: #EDB862;
+  cursor: pointer;
+  transition: all .3s;
+}
+
+
+/* Appearance/marks */
+.marks {
+  display: flex;
+  column-gap: 5px;
+}
+
+.mark {
+  width: 50px;
+  height: 50px;
+  background-color: #F2CC8F;
+  border: solid 1px rgba(0,0,0,.15);
+  cursor: pointer;
+}
+
 
 /* Game Board */
 #game-container {
   display: inline-grid;
   grid-template-columns: repeat(3, auto);
-  border: 12px solid #FEE440;
   grid-gap: 1px;
-  background-color: #9B5DE5;
+  background-color: #3D405B;
+  border: solid 16px #F2CC8F;
   border-radius: 5px;
 }
 
 #game-container div {
-  background-color: #00F5D4;
   width: 100px;
   height: 100px;
+  background-color: #F4F1DE;
+}
+
+
+
+/* Media queries */
+@media screen and (max-width: 833px) {
+  .custom-player:first-child {
+    border-right: none;
+    border-bottom: solid 1px rgba(0,0,0,.15);
+    padding-bottom: 16px;
+  }
+  .custom-player:last-child {
+    padding-top: 16px;
+    padding-left: 0;
+  }
 }

@@ -13,6 +13,17 @@ const gameBoard = (() => {
   };
   renderBoard();
 
+  const checkWinner = (player) => {
+    // ['x', 'x', 'x', '', '', '', '', '', '']
+    // ['', '', '', 'x', 'x', 'x', '', '', '']
+    // ['', '', '', '', '', '', 'x', 'x', 'x']
+    // ['x', '', '', 'x', '', '', 'x', '', '']
+    // ['', 'x', '', '', 'x', '', '', 'x', '']
+    // ['', '', 'x', '', '', 'x', '', '', 'x']
+    // ['x', '', '', '', 'x', '', '', '', 'x']
+    // ['', '', 'x', '', 'x', '', 'x', '', '']
+  };
+
   const gameDivs = document.querySelectorAll('#game-container > div');
 
   const clickBoard = () => {
@@ -25,10 +36,12 @@ const gameBoard = (() => {
             lastPlayer = playerOne;
             board[index] = 'x';
             lastPlayer.addMark(element, lastPlayer);
+            checkWinner(lastPlayer);
           } else {
             lastPlayer = playerTwo;
-            board[index] = 'o';
+            board[index] = 'x';
             lastPlayer.addMark(element, lastPlayer);
+            checkWinner(lastPlayer);
           }
         } else {
           console.log('Already taken');
@@ -51,9 +64,9 @@ const players = (name) => {
   const addMark = (element, lastPlayer) => {
     const el = element;
     if (lastPlayer === playerOne) {
-      el.style.backgroundColor = '#00BBF9';
+      el.style.backgroundColor = '#81B29A';
     } else {
-      el.style.backgroundColor = '#F15BB5';
+      el.style.backgroundColor = '#E07A5F';
     }
     console.log(lastPlayer.name);
   };
