@@ -4,10 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tic Tac Toe</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="css/modern-normalize.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+  <link href="css/fontawesome.min.css" rel="stylesheet">
+  <link href="css/solid.min.css" rel="stylesheet">
+  <link href="https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&family=Roboto&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/modern-normalize.min.css">
-  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <header>
@@ -24,22 +26,24 @@
         <div class="sep"></div>
         <div class="create-players">
           <div class="custom-player">
-            <h3 class="player-one">Player One</h3>
+            <div class="player-one">
+              <h3>Player One</h3>
+            </div>
             <label class="player-name-label" for="player1-name">NAME</label>
             <input type="text" name="player1" class="player-name" id="player1-name"  placeholder="Type your name">
             <p>APPEARANCE</p>
             <div class="marks">
-              <div class="mark"></div>
-              <div class="mark"></div>
-              <div class="mark"></div>
-              <div class="mark"></div>
+              <div class="mark"><i class="fas fa-ear-muffs"></i></i></div>
+              <div class="mark"><i class="fas fa-hat-wizard"></i></div>
+              <div class="mark"><i class="fas fa-helmet-battle"></i></div>
+              <div class="mark"><i class="fas fa-hat-cowboy"></i></div>
             </div>
             <p>MARK</p>
             <div class="marks">
-              <div class="mark"></div>
-              <div class="mark"></div>
-              <div class="mark"></div>
-              <div class="mark"></div>
+              <div class="mark"><i class="fas fa-times"></i></div>
+              <div class="mark"><i class="fas fa-staff"></i></div>
+              <div class="mark"><i class="fas fa-sword"></i></div>
+              <div class="mark"><i class="fas fa-bow-arrow"></i></div>
             </div>
           </div>
           <div class="custom-player">
@@ -55,17 +59,17 @@
             <input type="text" name="player-two" class="player-name" id="player-two-name" placeholder="Type your name">
             <p>APPEARANCE</p>
             <div class="marks">
-              <div class="mark"></div>
-              <div class="mark"></div>
-              <div class="mark"></div>
-              <div class="mark"></div>
+              <div class="mark"><i class="fas fa-hat-winter"></i></div>
+              <div class="mark"><i class="fas fa-hat-witch"></i></div>
+              <div class="mark"><i class="fas fa-hood-cloak"></i></div>
+              <div class="mark"><i class="fas fa-crown"></i></div>
             </div>
             <p>MARK</p>
             <div class="marks">
-              <div class="mark"></div>
-              <div class="mark"></div>
-              <div class="mark"></div>
-              <div class="mark"></div>
+              <div class="mark"><i class="fas fa-circle"></i></div>
+              <div class="mark"><i class="fas fa-wand-magic fa-flip-horizontal"></i></div>
+              <div class="mark"><i class="fas fa-mace fa-flip-horizontal"></i></div>
+              <div class="mark"><i class="fas fa-axe-battle rotate-45"></i></div>
             </div>
           </div>
         </div>
