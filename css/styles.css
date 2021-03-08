@@ -242,6 +242,15 @@ main {
   transform: rotate(-45deg) scale(-1, 1);
 }
 
+.player-one-error,
+.player-two-error {
+  display: none;
+  background-color: #E07A5F;
+  margin: 16px 0 0;
+  padding: 4px 6px;
+  color: #F4F1DE;
+}
+
 /* Game Board */
 #game-container {
   display: inline-grid;

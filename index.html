@@ -30,7 +30,8 @@
               <h3>Player One</h3>
             </div>
             <label class="player-name-label" for="player-one-name">NAME</label>
-            <input type="text" name="player-one-name" class="player-name" id="player-one-name"  placeholder="Type your name">
+            <input type="text" name="player-one-name" class="player-name" id="player-one-name" autocomplete="off" placeholder="Type your name">
+            <p class="player-one-error error-name"></p>
             <p>APPEARANCE</p>
             <div class="appearances">
               <div class="appearance"><i class="fas fa-ear-muffs"></i></i></div>
@@ -38,6 +39,7 @@
               <div class="appearance"><i class="fas fa-helmet-battle"></i></div>
               <div class="appearance"><i class="fas fa-hat-cowboy"></i></div>
             </div>
+            <p class="player-one-error error-appearance"></p>
             <p>MARK</p>
             <div class="marks">
               <div class="mark"><i class="fas fa-times"></i></div>
@@ -45,6 +47,7 @@
               <div class="mark"><i class="fas fa-sword"></i></div>
               <div class="mark"><i class="fas fa-bow-arrow"></i></div>
             </div>
+            <p class="player-one-error error-mark"></p>
           </div>
           <div class="custom-player" id="player-two">
             <div class="player-two-heading">
@@ -54,9 +57,10 @@
                 <h3>Bot</h3>
               </div>
             </div>
-
+            <p class="player-two-error error-mode"></p>
             <label class="player-name-label" for="player-two-name">NAME</label>
-            <input type="text" name="player-two-name" class="player-name" id="player-two-name" placeholder="Type your name">
+            <input type="text" name="player-two-name" class="player-name" id="player-two-name" autocomplete="off" placeholder="Type your name">
+            <p class="player-two-error error-name"></p>
             <p>APPEARANCE</p>
             <div class="appearances">
               <div class="appearance"><i class="fas fa-hat-winter"></i></div>
@@ -64,6 +68,7 @@
               <div class="appearance"><i class="fas fa-hood-cloak"></i></div>
               <div class="appearance"><i class="fas fa-crown"></i></div>
             </div>
+            <p class="player-two-error error-appearance"></p>
             <p>MARK</p>
             <div class="marks">
               <div class="mark"><i class="fas fa-circle"></i></div>
@@ -71,6 +76,7 @@
               <div class="mark"><i class="fas fa-mace fa-flip-horizontal"></i></div>
               <div class="mark"><i class="fas fa-axe-battle rotate-45"></i></div>
             </div>
+            <p class="player-two-error error-mark"></p>
           </div>
         </div>
         <div class="sep"></div>
