@@ -65,7 +65,7 @@ main {
 }
 
 #start-game,
-.reset {
+#reset {
   padding: 8px 12px;
   border: solid 1px rgba(0,0,0,.15);
   color: #F4F1DE;
@@ -85,12 +85,12 @@ main {
   background-color: #578E74;
 }
 
-.reset {
+#reset {
   background-color: #F2CC8F;
   color: #3D405B;
 }
 
-.reset:hover {
+#reset:hover {
   background-color: #EDB862;
 }
 
@@ -117,11 +117,7 @@ main {
   border-right: solid 1px rgba(0,0,0,.15);
 }
 
-.custom-player:last-child {
-  padding-left: 16px;
-}
-
-.player-one {
+.player-one-heading {
   display: flex;
   width: 160px;
   height: 50px;
@@ -134,16 +130,16 @@ main {
 }
 
 /* Player two dropdown */
-.player-two {
+.player-two-heading {
   display: inline-block;
   position: relative;
 }
 
-.player-two:hover .player-two-list {
+.player-two-heading:hover .player-two-list {
   display: block;
 }
 
-.player-two:hover .player-two-button {
+.player-two-heading:hover .player-two-button {
   background-color: #DA603F;
   transition: all .3s;
 }
@@ -209,12 +205,14 @@ main {
 }
 
 /* Appearance/marks */
-.marks {
+.marks,
+.appearances {
   display: flex;
   column-gap: 5px;
 }
 
-.mark {
+.mark,
+.appearance {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -227,9 +225,14 @@ main {
   transition: all .3s;
 }
 
-.mark:hover {
+.mark:hover,
+.appearance:hover {
   border-color: #3D405B;
   transition: all .3s;
+}
+
+.selected {
+  border-color: #3D405B;
 }
 
 .rotate-45 {
