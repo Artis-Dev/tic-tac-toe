@@ -20,7 +20,7 @@ header h1 {
 .toe { color: #81B29A; }
 
 main {
-  display: flex;
+  display: grid;
   justify-content: center;
   margin-top: 40px;
 }
@@ -65,7 +65,9 @@ main {
 }
 
 #start-game,
-#reset {
+#reset,
+#new-game,
+#restart {
   padding: 8px 12px;
   border: solid 1px rgba(0,0,0,.15);
   color: #F4F1DE;
@@ -81,17 +83,24 @@ main {
   margin-left: 16px;
   background-color: #69A387;
 }
+
 #start-game:hover {
   background-color: #578E74;
+  transition: all .3s;
 }
 
-#reset {
+#reset,
+#new-game,
+#restart {
   background-color: #F2CC8F;
   color: #3D405B;
 }
 
-#reset:hover {
+#reset:hover,
+#new-game:hover,
+#restart:hover {
   background-color: #EDB862;
+  transition: all .3s;
 }
 
 /* Characters creation */
@@ -267,7 +276,14 @@ main {
   background-color: #F4F1DE;
 }
 
+.controls {
+  text-align: center;
+  margin-top: 16px;
+}
 
+#new-game {
+  margin-left: 16px;
+}
 
 /* Media queries */
 @media screen and (max-width: 833px) {

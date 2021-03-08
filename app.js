@@ -187,6 +187,8 @@ const gameBoard = (() => {
   const gameContainer = document.querySelector('#game-container');
 
   const board = ['', '', '', '', '', '', '', '', ''];
+  const playerOneBoard = [];
+  const playerTwoBoard = [];
 
   const renderBoard = () => {
     for (let i = 0; i < board.length; i += 1) {
@@ -199,6 +201,33 @@ const gameBoard = (() => {
 
   const gameDivs = document.querySelectorAll('#game-container > div');
 
+  const checkWinner = (playerBoard) => {
+    if (playerBoard[0] === 'x' && playerBoard[1] === 'x' && playerBoard[2] === 'x') {
+      return true;
+    } if (playerBoard[0] === 'x' && playerBoard[1] === 'x' && playerBoard[2] === 'x') {
+      return true;
+    } if (playerBoard[3] === 'x' && playerBoard[4] === 'x' && playerBoard[5] === 'x') {
+      return true;
+    } if (playerBoard[6] === 'x' && playerBoard[7] === 'x' && playerBoard[8] === 'x') {
+      return true;
+    } if (playerBoard[0] === 'x' && playerBoard[3] === 'x' && playerBoard[6] === 'x') {
+      return true;
+    } if (playerBoard[1] === 'x' && playerBoard[4] === 'x' && playerBoard[7] === 'x') {
+      return true;
+    } if (playerBoard[2] === 'x' && playerBoard[5] === 'x' && playerBoard[8] === 'x') {
+      return true;
+    } if (playerBoard[0] === 'x' && playerBoard[4] === 'x' && playerBoard[8] === 'x') {
+      return true;
+    } if (playerBoard[2] === 'x' && playerBoard[4] === 'x' && playerBoard[6] === 'x') {
+      return true;
+    }
+    return false;
+  };
+
+  const endGame = (winner) => {
+    console.log(`${winner.name} is winner`);
+  };
+
   const clickBoard = () => {
     let lastPlayer = '';
     gameDivs.forEach((element) => {
@@ -208,11 +237,19 @@ const gameBoard = (() => {
           if (lastPlayer === '' || lastPlayer === newGame.playerTwo) {
             lastPlayer = newGame.playerOne;
             board[index] = 'x';
+            playerOneBoard[index] = 'x';
             lastPlayer.addMark(element, lastPlayer);
+            if (checkWinner(playerOneBoard)) {
+              endGame(lastPlayer);
+            }
           } else {
             lastPlayer = newGame.playerTwo;
             board[index] = 'x';
+            playerTwoBoard[index] = 'x';
             lastPlayer.addMark(element, lastPlayer);
+            if (checkWinner(playerTwoBoard)) {
+              endGame(lastPlayer);
+            }
           }
         } else {
           console.log('Already taken');
