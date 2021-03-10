@@ -152,15 +152,19 @@ const newGame = (() => {
     playerTwoSectionName.textContent = playerTwo.name;
     const playerOneAppearanceIcon = document.createElement('i');
     playerOneAppearanceIcon.className = playerOne.appearance;
+    playerOneSectionAppearance.textContent = '';
     playerOneSectionAppearance.appendChild(playerOneAppearanceIcon);
     const playerTwoAppearanceIcon = document.createElement('i');
     playerTwoAppearanceIcon.className = playerTwo.appearance;
+    playerTwoSectionAppearance.textContent = '';
     playerTwoSectionAppearance.appendChild(playerTwoAppearanceIcon);
     const playerOneMarkIcon = document.createElement('i');
     playerOneMarkIcon.className = playerOne.mark;
+    playerOneSectionMark.textContent = '';
     playerOneSectionMark.appendChild(playerOneMarkIcon);
     const playerTwoMarkIcon = document.createElement('i');
     playerTwoMarkIcon.className = playerTwo.mark;
+    playerTwoSectionMark.textContent = '';
     playerTwoSectionMark.appendChild(playerTwoMarkIcon);
   };
 
@@ -236,12 +240,15 @@ const newGame = (() => {
   return {
     playerOne,
     playerTwo,
+    newGameModal,
   };
 })();
 
 // Game board module
 const gameBoard = (() => {
   const gameContainer = document.querySelector('#game-container');
+  const restartRoundButton = document.querySelector('#restart');
+  const newGameButton = document.querySelector('#new-game');
 
   let board = ['', '', '', '', '', '', '', '', ''];
   let playerOneBoard = [];
@@ -310,15 +317,32 @@ const gameBoard = (() => {
       playerTwoCondition.classList.add('loser');
       playerOneCondition.textContent = 'WINNER';
       playerTwoCondition.textContent = 'LOSER';
-    } else {
+    } else if (winner === newGame.playerTwo) {
       playerOneCondition.classList.remove('winner', 'tie');
       playerTwoCondition.classList.remove('loser', 'tie');
       playerOneCondition.classList.add('loser');
       playerTwoCondition.classList.add('winner');
       playerOneCondition.textContent = 'LOSER';
       playerTwoCondition.textContent = 'WINNER';
+    } else {
+      playerOneCondition.classList.remove('winner', 'loser', 'tie');
+      playerTwoCondition.classList.remove('winner', 'loser', 'tie');
+      playerOneCondition.textContent = '';
+      playerTwoCondition.textContent = '';
     }
   };
+
+  const controls = () => {
+    restartRoundButton.addEventListener('click', () => {
+      endGame();
+    });
+
+    newGameButton.addEventListener('click', () => {
+      endGame();
+      newGame.newGameModal.style.display = 'block';
+    });
+  };
+  controls();
 
   const clickBoard = () => {
     let lastPlayer = '';
