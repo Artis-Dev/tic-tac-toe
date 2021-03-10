@@ -30,7 +30,7 @@ const newGame = (() => {
   // DOM elements
   const newGameModal = document.querySelector('#new-game-modal');
   const startGameButton = document.querySelector('#start-game');
-  // const resetButton = document.querySelector('#reset');
+  const resetButton = document.querySelector('#reset');
   const playerTwoHeading = document.querySelector('.player-two-button h3');
   const playerTwoHeadingList = document.querySelectorAll('.player-two-list h3');
   const playerOneName = document.querySelector('#player-one-name');
@@ -108,6 +108,28 @@ const newGame = (() => {
           element.classList.remove('selected');
         });
         mark.classList.add('selected');
+      });
+    });
+
+    resetButton.addEventListener('click', () => {
+      playerOneName.value = '';
+      playerTwoHeading.textContent = 'Choose';
+      playerTwoName.value = '';
+      newPlayerOneAppearance = undefined;
+      newPlayerTwoAppearance = undefined;
+      newPlayerOneMark = undefined;
+      newPlayerTwoMark = undefined;
+      playerOneAppearance.forEach((element) => {
+        element.classList.remove('selected');
+      });
+      playerTwoAppearance.forEach((element) => {
+        element.classList.remove('selected');
+      });
+      playerOneMark.forEach((element) => {
+        element.classList.remove('selected');
+      });
+      playerTwoMark.forEach((element) => {
+        element.classList.remove('selected');
       });
     });
   };
@@ -337,7 +359,4 @@ const gameBoard = (() => {
     });
   };
   clickBoard();
-  return {
-    board,
-  };
 })();
