@@ -44,7 +44,7 @@ main {
 
 /* New Game modal */
 .modal {
-  display: none;
+  display: block;
   position: fixed;
   left: 0;
   top: 0;
@@ -217,7 +217,7 @@ main {
   height: 50px;
   padding: 4px 8px;
   background-color: var(--white);
-  border: solid 1px rgba(0,0,0,.15);
+  border: solid 2px rgba(0,0,0,.15);
   border-radius: 0;
   font-size: 22px;
   color: var(--purple);
@@ -227,7 +227,7 @@ main {
 }
 
 .player-name:focus {
-  border: solid 1px var(--purple);
+  border-color: var(--purple);
   transition: all .3s;
 }
 
@@ -246,7 +246,7 @@ main {
   width: 50px;
   height: 50px;
   background-color: var(--yellow);
-  border: solid 1px rgba(0,0,0,.15);
+  border: solid 2px rgba(0,0,0,.15);
   font-size: 30px;
   cursor: pointer;
   transition: all .3s;
@@ -302,6 +302,14 @@ main {
   font-size: 50px;
 }
 
+.green {
+  background-color: var(--green) !important;
+}
+
+.red {
+  background-color: var(--red) !important;
+}
+
 .player-one-section,
 .player-two-section {
   display: flex;
@@ -314,12 +322,12 @@ main {
 
 .player-one-section {
   grid-area: player-one;
-  margin-right: 50px;
+  margin-right: 32px;
 }
 
 .player-two-section {
   grid-area: player-two;
-  margin-left: 50px;
+  margin-left: 32px;
 }
 
 .player-section-name {
@@ -360,10 +368,14 @@ main {
   color: var(--red);
 }
 
+.tie {
+  color: var(--purple);
+}
+
 .controls {
   grid-area: controls;
   text-align: center;
-  margin-top: 16px;
+  margin-top: 32px;
 }
 
 #new-game {

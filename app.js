@@ -14,12 +14,12 @@ const createPlayers = (name, appearance, mark, mode) => ({
       const markIcon = document.createElement('i');
       markIcon.className = lastPlayer.mark;
       el.appendChild(markIcon);
-      el.style.backgroundColor = '#81B29A';
+      el.classList.add('green');
     } else {
       const markIcon = document.createElement('i');
       markIcon.className = lastPlayer.mark;
       el.appendChild(markIcon);
-      el.style.backgroundColor = '#E07A5F';
+      el.classList.add('red');
     }
     console.log(lastPlayer.name);
   },
@@ -255,20 +255,47 @@ const gameBoard = (() => {
       return true;
     } if (playerBoard[2] === 'x' && playerBoard[4] === 'x' && playerBoard[6] === 'x') {
       return true;
+    } if (board.toString() === ['x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x'].toString()) {
+      return 'tie';
     }
     return false;
   };
 
   const endGame = (winner) => {
+    const playerOneCondition = document.querySelector('.player-one-section .player-condition');
+    const playerTwoCondition = document.querySelector('.player-two-section .player-condition');
+
     board = ['', '', '', '', '', '', '', '', ''];
     playerOneBoard = [];
     playerTwoBoard = [];
 
-    gameDivs.forEach(() => {
-      // qq
+    gameDivs.forEach((element) => {
+      element.textContent = '';
+      element.classList.remove('red', 'green');
     });
 
-    console.log(`${winner.name} is winner`);
+    if (winner === 'tie') {
+      playerOneCondition.classList.remove('winner', 'loser');
+      playerTwoCondition.classList.remove('loser', 'winner');
+      playerOneCondition.classList.add('tie');
+      playerTwoCondition.classList.add('tie');
+      playerOneCondition.textContent = 'TIE';
+      playerTwoCondition.textContent = 'TIE';
+    } else if (winner === newGame.playerOne) {
+      playerOneCondition.classList.remove('loser', 'tie');
+      playerTwoCondition.classList.remove('winner', 'tie');
+      playerOneCondition.classList.add('winner');
+      playerTwoCondition.classList.add('loser');
+      playerOneCondition.textContent = 'WINNER';
+      playerTwoCondition.textContent = 'LOSER';
+    } else {
+      playerOneCondition.classList.remove('winner', 'tie');
+      playerTwoCondition.classList.remove('loser', 'tie');
+      playerOneCondition.classList.add('loser');
+      playerTwoCondition.classList.add('winner');
+      playerOneCondition.textContent = 'LOSER';
+      playerTwoCondition.textContent = 'WINNER';
+    }
   };
 
   const clickBoard = () => {
@@ -283,7 +310,12 @@ const gameBoard = (() => {
             playerOneBoard[index] = 'x';
             lastPlayer.addMark(element, lastPlayer);
             if (checkWinner(playerOneBoard)) {
-              // endGame(lastPlayer);
+              if (checkWinner(playerTwoBoard) === 'tie') {
+                endGame('tie');
+              } else {
+                endGame(lastPlayer);
+              }
+              lastPlayer = newGame.playerTwo;
             }
           } else {
             lastPlayer = newGame.playerTwo;
@@ -291,7 +323,11 @@ const gameBoard = (() => {
             playerTwoBoard[index] = 'x';
             lastPlayer.addMark(element, lastPlayer);
             if (checkWinner(playerTwoBoard)) {
-              endGame(lastPlayer);
+              if (checkWinner(playerTwoBoard) === 'tie') {
+                endGame('tie');
+              } else {
+                endGame(lastPlayer);
+              }
             }
           }
         } else {
@@ -301,4 +337,7 @@ const gameBoard = (() => {
     });
   };
   clickBoard();
+  return {
+    board,
+  };
 })();
