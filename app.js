@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // Players factory
 const createPlayers = (name, appearance, mark, mode) => ({
   name,
@@ -10,8 +11,14 @@ const createPlayers = (name, appearance, mark, mode) => ({
   addMark(element, lastPlayer) {
     const el = element;
     if (lastPlayer === newGame.playerOne) {
+      const markIcon = document.createElement('i');
+      markIcon.className = lastPlayer.mark;
+      el.appendChild(markIcon);
       el.style.backgroundColor = '#81B29A';
     } else {
+      const markIcon = document.createElement('i');
+      markIcon.className = lastPlayer.mark;
+      el.appendChild(markIcon);
       el.style.backgroundColor = '#E07A5F';
     }
     console.log(lastPlayer.name);
@@ -40,9 +47,16 @@ const newGame = (() => {
   const playerTwoErrorAppearance = document.querySelector('#player-two .error-appearance');
   const playerOneErrorMark = document.querySelector('#player-one .error-mark');
   const playerTwoErrorMark = document.querySelector('#player-two .error-mark');
+  // Player's sections
+  const playerOneSectionName = document.querySelector('.player-one-section .player-section-name');
+  const playerTwoSectionName = document.querySelector('.player-two-section .player-section-name');
+  const playerOneSectionAppearance = document.querySelector('.player-one-section .player-section-appearance');
+  const playerTwoSectionAppearance = document.querySelector('.player-two-section .player-section-appearance');
+  const playerOneSectionMark = document.querySelector('.player-one-section .player-section-mark');
+  const playerTwoSectionMark = document.querySelector('.player-two-section .player-section-mark');
 
-  const playerOne = createPlayers('Player One', 'default', 'default', 'Human');
-  const playerTwo = createPlayers('Player Two', 'default', 'default', '');
+  const playerOne = createPlayers('Player One', 'fas fa-ear-muffs', 'fas fa-times', 'Human');
+  const playerTwo = createPlayers('Player Two', 'fas fa-hat-winter', 'fas fa-circle', '');
 
   let newPlayerOneAppearance;
   let newPlayerTwoAppearance;
@@ -99,6 +113,35 @@ const newGame = (() => {
   };
   createPlayersUi();
 
+  const setupGame = () => {
+    // Player one setup
+    playerOne.name = playerOneName.value;
+    playerOne.appearance = newPlayerOneAppearance;
+    playerOne.mark = newPlayerOneMark;
+    playerOne.sayHello();
+    // Player two setup
+    playerTwo.mode = playerTwoHeading.textContent;
+    playerTwo.name = playerTwoName.value;
+    playerTwo.appearance = newPlayerTwoAppearance;
+    playerTwo.mark = newPlayerTwoMark;
+    playerTwo.sayHello();
+    // Player's sections setup
+    playerOneSectionName.textContent = playerOne.name;
+    playerTwoSectionName.textContent = playerTwo.name;
+    const playerOneAppearanceIcon = document.createElement('i');
+    playerOneAppearanceIcon.className = playerOne.appearance;
+    playerOneSectionAppearance.appendChild(playerOneAppearanceIcon);
+    const playerTwoAppearanceIcon = document.createElement('i');
+    playerTwoAppearanceIcon.className = playerTwo.appearance;
+    playerTwoSectionAppearance.appendChild(playerTwoAppearanceIcon);
+    const playerOneMarkIcon = document.createElement('i');
+    playerOneMarkIcon.className = playerOne.mark;
+    playerOneSectionMark.appendChild(playerOneMarkIcon);
+    const playerTwoMarkIcon = document.createElement('i');
+    playerTwoMarkIcon.className = playerTwo.mark;
+    playerTwoSectionMark.appendChild(playerTwoMarkIcon);
+  };
+
   const validation = () => {
     startGameButton.addEventListener('click', () => {
       if (playerTwoHeading.textContent !== 'Choose'
@@ -108,15 +151,7 @@ const newGame = (() => {
       && newPlayerTwoAppearance !== undefined
       && newPlayerOneMark !== undefined
       && newPlayerTwoMark !== undefined) {
-        playerTwo.mode = playerTwoHeading.textContent;
-        playerOne.name = playerOneName.value;
-        playerTwo.name = playerTwoName.value;
-        playerOne.appearance = newPlayerOneAppearance;
-        playerTwo.appearance = newPlayerTwoAppearance;
-        playerOne.mark = newPlayerOneMark;
-        playerTwo.mark = newPlayerTwoMark;
-        playerOne.sayHello();
-        playerTwo.sayHello();
+        setupGame();
         newGameModal.style.display = 'none';
       }
       // Mode error
@@ -186,9 +221,9 @@ const newGame = (() => {
 const gameBoard = (() => {
   const gameContainer = document.querySelector('#game-container');
 
-  const board = ['', '', '', '', '', '', '', '', ''];
-  const playerOneBoard = [];
-  const playerTwoBoard = [];
+  let board = ['', '', '', '', '', '', '', '', ''];
+  let playerOneBoard = [];
+  let playerTwoBoard = [];
 
   const renderBoard = () => {
     for (let i = 0; i < board.length; i += 1) {
@@ -225,6 +260,14 @@ const gameBoard = (() => {
   };
 
   const endGame = (winner) => {
+    board = ['', '', '', '', '', '', '', '', ''];
+    playerOneBoard = [];
+    playerTwoBoard = [];
+
+    gameDivs.forEach(() => {
+      // qq
+    });
+
     console.log(`${winner.name} is winner`);
   };
 
@@ -240,7 +283,7 @@ const gameBoard = (() => {
             playerOneBoard[index] = 'x';
             lastPlayer.addMark(element, lastPlayer);
             if (checkWinner(playerOneBoard)) {
-              endGame(lastPlayer);
+              // endGame(lastPlayer);
             }
           } else {
             lastPlayer = newGame.playerTwo;

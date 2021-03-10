@@ -9,7 +9,7 @@
   <link href="css/fontawesome.min.css" rel="stylesheet">
   <link href="css/solid.min.css" rel="stylesheet">
   <link href="https://fonts.gstatic.com" rel="preconnect">
-  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
@@ -32,7 +32,7 @@
             <label class="player-name-label" for="player-one-name">NAME</label>
             <input type="text" name="player-one-name" class="player-name" id="player-one-name" autocomplete="off" placeholder="Type your name">
             <p class="player-one-error error-name"></p>
-            <p>APPEARANCE</p>
+            <p>CHARACTER</p>
             <div class="appearances">
               <div class="appearance"><i class="fas fa-ear-muffs"></i></i></div>
               <div class="appearance"><i class="fas fa-hat-wizard"></i></div>
@@ -61,7 +61,7 @@
             <label class="player-name-label" for="player-two-name">NAME</label>
             <input type="text" name="player-two-name" class="player-name" id="player-two-name" autocomplete="off" placeholder="Type your name">
             <p class="player-two-error error-name"></p>
-            <p>APPEARANCE</p>
+            <p>CHARACTER</p>
             <div class="appearances">
               <div class="appearance"><i class="fas fa-hat-winter"></i></div>
               <div class="appearance"><i class="fas fa-hat-witch"></i></div>
@@ -88,6 +88,18 @@
       </div>
     </div>
     <!-- /Modal -->
+    <div class="player-one-section">
+      <h2 class="player-section-name">PLAYER ONE</h2>
+      <div class="player-section-appearance"></div>
+      <div class="player-section-mark"></div>
+      <h3 class="player-condition">WINNER</h3>
+    </div>
+    <div class="player-two-section">
+      <h2 class="player-section-name">PLAYER TWO</h2>
+      <div class="player-section-appearance"></div>
+      <div class="player-section-mark"></div>
+      <h3 class="player-condition">LOSER</h3>
+    </div>
     <div id="game-container"></div>
     <div class="controls">
       <button id="restart" type="button">RESTART ROUND</button><button id="new-game" type="button">NEW GAME</button>

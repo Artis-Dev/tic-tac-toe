@@ -1,7 +1,19 @@
+:root {
+  --purple: #3D405B;
+  --white: #F4F1DE;
+  --yellow: #F2CC8F;
+  --hover-yellow: #EDB862;
+  --green: #69A387;
+  --hover-green: #578E74;
+  --red: #E07A5F;
+  --hover-red: #DA603F;
+}
+
 body {
-  background-color: #3D405B;
+  background-color: var(--purple);
   font-family: 'Roboto', sans-serif;
-  color: #3D405B;
+  font-weight: 500;
+  color: var(--purple);
 }
 
 h1, h2, h3 {
@@ -15,26 +27,31 @@ header h1 {
   z-index: 2;
 }
 
-.tic { color: #E07A5F; }
-.tac { color: #F2CC8F; }
-.toe { color: #81B29A; }
+.tic { color: var(--red); }
+.tac { color: var(--yellow); }
+.toe { color: var(--green); }
 
 main {
   display: grid;
   justify-content: center;
   margin-top: 40px;
+  grid-template-columns: auto 344px auto;
+  grid-template-rows: 344px auto;
+  grid-template-areas:
+    "player-one board player-two"
+    ". controls .";
 }
 
 /* New Game modal */
 .modal {
-  display: block;
+  display: none;
   position: fixed;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
   padding: 0 20px;
-  background-color: #3D405B;
+  background-color: var(--purple);
   overflow: auto;
   z-index: 1;
 }
@@ -43,7 +60,7 @@ main {
   max-width: 800px;
   margin: 135px auto 50px;
   padding: 16px;
-  background-color: #F4F1DE;
+  background-color: var(--white);
   border: solid 1px rgba(0,0,0,.15);
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
   animation-name: fadeIn;
@@ -70,8 +87,9 @@ main {
 #restart {
   padding: 8px 12px;
   border: solid 1px rgba(0,0,0,.15);
-  color: #F4F1DE;
+  color: var(--white);
   cursor: pointer;
+  font-weight: 500;
   transition: all .3s;
 }
 
@@ -81,25 +99,25 @@ main {
 
 #start-game {
   margin-left: 16px;
-  background-color: #69A387;
+  background-color: var(--green);
 }
 
 #start-game:hover {
-  background-color: #578E74;
+  background-color: var(--hover-green);
   transition: all .3s;
 }
 
 #reset,
 #new-game,
 #restart {
-  background-color: #F2CC8F;
-  color: #3D405B;
+  background-color: var(--yellow);
+  color: var(--purple);
 }
 
 #reset:hover,
 #new-game:hover,
 #restart:hover {
-  background-color: #EDB862;
+  background-color: var(--hover-yellow);
   transition: all .3s;
 }
 
@@ -131,9 +149,9 @@ main {
   width: 160px;
   height: 50px;
   padding: 0 16px;
-  background-color: #69A387;
+  background-color: var(--green);
   border: solid 1px rgba(0,0,0,.15);
-  color: #F4F1DE;
+  color: var(--white);
   cursor: default;
   user-select: none;
 }
@@ -149,15 +167,15 @@ main {
 }
 
 .player-two-heading:hover .player-two-button {
-  background-color: #DA603F;
+  background-color: var(--hover-red);
   transition: all .3s;
 }
 
 .player-two-button {
   height: 50px;
   width: 160px;
-  background-color: #E07A5F;
-  color: #F4F1DE;
+  background-color: var(--red);
+  color: var(--white);
   border: solid 1px rgba(0,0,0,.15);
   cursor: pointer;
   transition: all .3s;
@@ -167,7 +185,7 @@ main {
   display: none;
   position: absolute;
   width: 160px;
-  background-color: #E07A5F;
+  background-color: var(--red);
   border: solid 1px rgba(0,0,0,.15);
   border-top: none;
   text-align: center;
@@ -177,13 +195,13 @@ main {
 .player-two-list h3 {
   display: block;
   padding: 12px 16px;
-  color: #F4F1DE;
+  color: var(--white);
   text-decoration: none;
   transition: all .3s;
 }
 
 .player-two-list h3:hover {
-  background-color: #DA603F;
+  background-color: var(--hover-red);
   cursor: pointer;
   transition: all .3s;
 }
@@ -198,18 +216,18 @@ main {
   width: 215px;
   height: 50px;
   padding: 4px 8px;
-  background-color: #F4F1DE;
+  background-color: var(--white);
   border: solid 1px rgba(0,0,0,.15);
   border-radius: 0;
   font-size: 22px;
-  color: #3D405B;
+  color: var(--purple);
   text-align: center;
   outline: none;
   transition: all .3s;
 }
 
 .player-name:focus {
-  border: solid 1px #3D405B;
+  border: solid 1px var(--purple);
   transition: all .3s;
 }
 
@@ -227,7 +245,7 @@ main {
   align-items: center;
   width: 50px;
   height: 50px;
-  background-color: #F2CC8F;
+  background-color: var(--yellow);
   border: solid 1px rgba(0,0,0,.15);
   font-size: 30px;
   cursor: pointer;
@@ -236,12 +254,14 @@ main {
 
 .mark:hover,
 .appearance:hover {
-  border-color: #3D405B;
+  background-color: var(--hover-yellow);
+  border-color: var(--purple);
   transition: all .3s;
 }
 
 .selected {
-  border-color: #3D405B;
+  background-color: var(--hover-yellow);
+  border-color: var(--purple);
 }
 
 .rotate-45 {
@@ -254,29 +274,94 @@ main {
 .player-one-error,
 .player-two-error {
   display: none;
-  background-color: #E07A5F;
+  background-color: var(--red);
   margin: 16px 0 0;
   padding: 4px 6px;
-  color: #F4F1DE;
+  color: var(--white);
 }
 
 /* Game Board */
 #game-container {
+  grid-area: board;
   display: inline-grid;
   justify-content: center;
   grid-template-columns: repeat(3, auto);
-  grid-gap: 1px;
-  background-color: #3D405B;
-  border: solid 16px #F2CC8F;
+  grid-gap: 6px;
+  background-color: var(--purple);
+  border: solid 16px var(--yellow);
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
 #game-container div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100px;
   height: 100px;
-  background-color: #F4F1DE;
+  background-color: var(--white);
+  font-size: 50px;
+}
+
+.player-one-section,
+.player-two-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--yellow);
+  padding: 16px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.player-one-section {
+  grid-area: player-one;
+  margin-right: 50px;
+}
+
+.player-two-section {
+  grid-area: player-two;
+  margin-left: 50px;
+}
+
+.player-section-name {
+  margin: 0 0 16px;
+}
+
+.player-section-appearance,
+.player-section-mark {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 100px;
+  margin-bottom: 16px;
+  font-size: 50px;
+  border: solid 6px var(--purple);
+}
+
+.player-one-section .player-section-appearance,
+.player-one-section .player-section-mark {
+  background-color: var(--green);
+}
+
+.player-two-section .player-section-appearance,
+.player-two-section .player-section-mark {
+  background-color: var(--red);
+}
+
+.player-condition {
+  margin: 0;
+}
+
+.winner {
+  color: var(--green);
+}
+
+.loser {
+  color: var(--red);
 }
 
 .controls {
+  grid-area: controls;
   text-align: center;
   margin-top: 16px;
 }
