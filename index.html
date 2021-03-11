@@ -58,25 +58,40 @@
               </div>
             </div>
             <p class="player-two-error error-mode"></p>
-            <label class="player-name-label" for="player-two-name">NAME</label>
-            <input type="text" name="player-two-name" class="player-name" id="player-two-name" autocomplete="off" placeholder="Type your name">
-            <p class="player-two-error error-name"></p>
-            <p>CHARACTER</p>
-            <div class="appearances">
-              <div class="appearance"><i class="fas fa-hat-winter"></i></div>
-              <div class="appearance"><i class="fas fa-hat-witch"></i></div>
-              <div class="appearance"><i class="fas fa-hood-cloak"></i></div>
-              <div class="appearance"><i class="fas fa-crown"></i></div>
+            <div class='player-two-human'>
+              <label class="player-name-label" for="player-two-name">NAME</label>
+              <input type="text" name="player-two-name" class="player-name" id="player-two-name" autocomplete="off" placeholder="Type your name">
+              <p class="player-two-error error-name"></p>
+              <p>CHARACTER</p>
+              <div class="appearances">
+                <div class="appearance"><i class="fas fa-hat-winter"></i></div>
+                <div class="appearance"><i class="fas fa-hat-witch"></i></div>
+                <div class="appearance"><i class="fas fa-hood-cloak"></i></div>
+                <div class="appearance"><i class="fas fa-crown"></i></div>
+              </div>
+              <p class="player-two-error error-appearance"></p>
+              <p>MARK</p>
+              <div class="marks">
+                <div class="mark"><i class="fas fa-circle"></i></div>
+                <div class="mark"><i class="fas fa-wand-magic fa-flip-horizontal"></i></div>
+                <div class="mark"><i class="fas fa-mace fa-flip-horizontal"></i></div>
+                <div class="mark"><i class="fas fa-axe-battle rotate-45"></i></div>
+              </div>
+              <p class="player-two-error error-mark"></p>
             </div>
-            <p class="player-two-error error-appearance"></p>
-            <p>MARK</p>
-            <div class="marks">
-              <div class="mark"><i class="fas fa-circle"></i></div>
-              <div class="mark"><i class="fas fa-wand-magic fa-flip-horizontal"></i></div>
-              <div class="mark"><i class="fas fa-mace fa-flip-horizontal"></i></div>
-              <div class="mark"><i class="fas fa-axe-battle rotate-45"></i></div>
+
+            <div class='player-two-bot'>
+              <label class="player-name-label" for="player-two-name">NAME</label>
+              <div class="bot-name"><h3>Robot</h3></div>
+              <p>CHARACTER</p>
+              <div class="appearances">
+                <div class="appearance selected"><i class="fas fa-robot"></i></div>
+              </div>
+              <p>MARK</p>
+              <div class="marks">
+                <div class="mark selected"><i class="fas fa-raygun fa-flip-horizontal"></i></div>
+              </div>
             </div>
-            <p class="player-two-error error-mark"></p>
           </div>
         </div>
         <div class="sep"></div>
@@ -88,6 +103,7 @@
       </div>
     </div>
     <!-- /Modal -->
+
     <div class="player-one-section">
       <h2 class="player-section-name">PLAYER ONE</h2>
       <div class="player-section-appearance"></div>

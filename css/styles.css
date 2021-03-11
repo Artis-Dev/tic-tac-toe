@@ -27,6 +27,10 @@ header h1 {
   z-index: 2;
 }
 
+h3 {
+  font-size: 22px;
+}
+
 .tic { color: var(--red); }
 .tac { color: var(--yellow); }
 .toe { color: var(--green); }
@@ -278,6 +282,23 @@ main {
   margin: 16px 0 0;
   padding: 4px 6px;
   color: var(--white);
+}
+
+.player-two-human {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+
+.player-two-bot {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bot-name {
+  display: flex;
+  height: 50px;
 }
 
 /* Game Board */

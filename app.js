@@ -36,9 +36,11 @@ const newGame = (() => {
   const playerOneName = document.querySelector('#player-one-name');
   const playerTwoName = document.querySelector('#player-two-name');
   const playerOneAppearance = document.querySelectorAll('#player-one .appearance');
-  const playerTwoAppearance = document.querySelectorAll('#player-two .appearance');
+  const playerTwoAppearance = document.querySelectorAll('.player-two-human .appearance');
   const playerOneMark = document.querySelectorAll('#player-one .mark');
-  const playerTwoMark = document.querySelectorAll('#player-two .mark');
+  const playerTwoMark = document.querySelectorAll('.player-two-human .mark');
+  const playerTwoHuman = document.querySelector('.player-two-human');
+  const playerTwoBot = document.querySelector('.player-two-bot');
   // DOM elements for errors
   const playerTwoErrorMode = document.querySelector('#player-two .error-mode');
   const playerOneErrorName = document.querySelector('#player-one .error-name');
@@ -58,16 +60,62 @@ const newGame = (() => {
   const playerOne = createPlayers('Player One', 'fas fa-ear-muffs', 'fas fa-times', 'Human');
   const playerTwo = createPlayers('Player Two', 'fas fa-hat-winter', 'fas fa-circle', '');
 
+  let newPlayerTwoName;
   let newPlayerOneAppearance;
   let newPlayerTwoAppearance;
   let newPlayerOneMark;
   let newPlayerTwoMark;
+
+  const reset = (type) => {
+    if (type === 'hard') {
+      playerTwoHeading.textContent = 'Choose';
+      playerTwoBot.style.display = 'none';
+      playerTwoHuman.style.display = 'none';
+    }
+    playerOneName.value = '';
+    playerTwoName.value = '';
+    newPlayerTwoName = undefined;
+    newPlayerOneAppearance = undefined;
+    newPlayerTwoAppearance = undefined;
+    newPlayerOneMark = undefined;
+    newPlayerTwoMark = undefined;
+    playerOneAppearance.forEach((element) => {
+      element.classList.remove('selected');
+    });
+    playerTwoAppearance.forEach((element) => {
+      element.classList.remove('selected');
+    });
+    playerOneMark.forEach((element) => {
+      element.classList.remove('selected');
+    });
+    playerTwoMark.forEach((element) => {
+      element.classList.remove('selected');
+    });
+    playerTwoErrorMode.style.display = 'none';
+    playerOneErrorName.style.display = 'none';
+    playerTwoErrorName.style.display = 'none';
+    playerOneErrorAppearance.style.display = 'none';
+    playerTwoErrorAppearance.style.display = 'none';
+    playerOneErrorMark.style.display = 'none';
+    playerTwoErrorMark.style.display = 'none';
+  };
 
   // New game UI
   const createPlayersUi = () => {
     playerTwoHeadingList.forEach((item) => {
       item.addEventListener('click', () => {
         playerTwoHeading.textContent = item.textContent;
+        reset();
+        if (item.textContent === 'Bot') {
+          newPlayerTwoName = 'Robot';
+          newPlayerTwoAppearance = 'fas fa-robot';
+          newPlayerTwoMark = 'fas fa-raygun fa-flip-horizontal';
+          playerTwoHuman.style.display = 'none';
+          playerTwoBot.style.display = 'flex';
+        } else {
+          playerTwoHuman.style.display = 'flex';
+          playerTwoBot.style.display = 'none';
+        }
       });
     });
 
@@ -112,25 +160,7 @@ const newGame = (() => {
     });
 
     resetButton.addEventListener('click', () => {
-      playerOneName.value = '';
-      playerTwoHeading.textContent = 'Choose';
-      playerTwoName.value = '';
-      newPlayerOneAppearance = undefined;
-      newPlayerTwoAppearance = undefined;
-      newPlayerOneMark = undefined;
-      newPlayerTwoMark = undefined;
-      playerOneAppearance.forEach((element) => {
-        element.classList.remove('selected');
-      });
-      playerTwoAppearance.forEach((element) => {
-        element.classList.remove('selected');
-      });
-      playerOneMark.forEach((element) => {
-        element.classList.remove('selected');
-      });
-      playerTwoMark.forEach((element) => {
-        element.classList.remove('selected');
-      });
+      reset('hard');
     });
   };
   createPlayersUi();
@@ -143,7 +173,7 @@ const newGame = (() => {
     playerOne.sayHello();
     // Player two setup
     playerTwo.mode = playerTwoHeading.textContent;
-    playerTwo.name = playerTwoName.value;
+    playerTwo.name = newPlayerTwoName || playerTwoName.value;
     playerTwo.appearance = newPlayerTwoAppearance;
     playerTwo.mark = newPlayerTwoMark;
     playerTwo.sayHello();
@@ -172,13 +202,14 @@ const newGame = (() => {
     startGameButton.addEventListener('click', () => {
       if (playerTwoHeading.textContent !== 'Choose'
       && playerOneName.value !== ''
-      && playerTwoName.value !== ''
       && newPlayerOneAppearance !== undefined
       && newPlayerTwoAppearance !== undefined
       && newPlayerOneMark !== undefined
       && newPlayerTwoMark !== undefined) {
-        setupGame();
-        newGameModal.style.display = 'none';
+        if (playerTwoName.value !== '' || newPlayerTwoName !== undefined) {
+          setupGame();
+          newGameModal.style.display = 'none';
+        }
       }
       // Mode error
       if (playerTwoHeading.textContent === 'Choose') {
@@ -188,50 +219,54 @@ const newGame = (() => {
         playerTwoErrorMode.textContent = '';
         playerTwoErrorMode.style.display = 'none';
       }
-      // Name errors
-      if (playerOneName.value === '') {
-        playerOneErrorName.textContent = 'FILL YOUR NAME';
-        playerOneErrorName.style.display = 'block';
-      } else {
-        playerOneErrorName.textContent = '';
-        playerOneErrorName.style.display = 'none';
-      }
-      if (playerTwoName.value === '') {
-        playerTwoErrorName.textContent = 'FILL YOUR NAME';
-        playerTwoErrorName.style.display = 'block';
-      } else {
-        playerTwoErrorName.textContent = '';
-        playerTwoErrorName.style.display = 'none';
-      }
-      // Appearance errors
-      if (newPlayerOneAppearance === undefined) {
-        playerOneErrorAppearance.textContent = 'CHOOSE APPEARANCE';
-        playerOneErrorAppearance.style.display = 'block';
-      } else {
-        playerOneErrorAppearance.textContent = '';
-        playerOneErrorAppearance.style.display = 'none';
-      }
-      if (newPlayerTwoAppearance === undefined) {
-        playerTwoErrorAppearance.textContent = 'CHOOSE APPEARANCE';
-        playerTwoErrorAppearance.style.display = 'block';
-      } else {
-        playerTwoErrorAppearance.textContent = '';
-        playerTwoErrorAppearance.style.display = 'none';
-      }
-      // Mark errors
-      if (newPlayerOneMark === undefined) {
-        playerOneErrorMark.textContent = 'CHOOSE MARK';
-        playerOneErrorMark.style.display = 'block';
-      } else {
-        playerOneErrorMark.textContent = '';
-        playerOneErrorMark.style.display = 'none';
-      }
-      if (newPlayerTwoMark === undefined) {
-        playerTwoErrorMark.textContent = 'CHOOSE MARK';
-        playerTwoErrorMark.style.display = 'block';
-      } else {
-        playerTwoErrorMark.textContent = '';
-        playerTwoErrorMark.style.display = 'none';
+      if (playerTwoHeading.textContent !== 'Choose') {
+        // Name errors
+        if (playerOneName.value === '') {
+          playerOneErrorName.textContent = 'FILL YOUR NAME';
+          playerOneErrorName.style.display = 'block';
+        } else {
+          playerOneErrorName.textContent = '';
+          playerOneErrorName.style.display = 'none';
+        }
+        if (playerTwoHeading.textContent === 'Human') {
+          if (playerTwoName.value === '') {
+            playerTwoErrorName.textContent = 'FILL YOUR NAME';
+            playerTwoErrorName.style.display = 'block';
+          } else {
+            playerTwoErrorName.textContent = '';
+            playerTwoErrorName.style.display = 'none';
+          }
+        }
+        // Appearance errors
+        if (newPlayerOneAppearance === undefined) {
+          playerOneErrorAppearance.textContent = 'CHOOSE APPEARANCE';
+          playerOneErrorAppearance.style.display = 'block';
+        } else {
+          playerOneErrorAppearance.textContent = '';
+          playerOneErrorAppearance.style.display = 'none';
+        }
+        if (newPlayerTwoAppearance === undefined) {
+          playerTwoErrorAppearance.textContent = 'CHOOSE APPEARANCE';
+          playerTwoErrorAppearance.style.display = 'block';
+        } else {
+          playerTwoErrorAppearance.textContent = '';
+          playerTwoErrorAppearance.style.display = 'none';
+        }
+        // Mark errors
+        if (newPlayerOneMark === undefined) {
+          playerOneErrorMark.textContent = 'CHOOSE MARK';
+          playerOneErrorMark.style.display = 'block';
+        } else {
+          playerOneErrorMark.textContent = '';
+          playerOneErrorMark.style.display = 'none';
+        }
+        if (newPlayerTwoMark === undefined) {
+          playerTwoErrorMark.textContent = 'CHOOSE MARK';
+          playerTwoErrorMark.style.display = 'block';
+        } else {
+          playerTwoErrorMark.textContent = '';
+          playerTwoErrorMark.style.display = 'none';
+        }
       }
     });
   };
@@ -363,7 +398,7 @@ const gameBoard = (() => {
               }
               lastPlayer = newGame.playerTwo;
             }
-          } else {
+          } else if (newGame.playerTwo.mode === 'Human') {
             lastPlayer = newGame.playerTwo;
             board[index] = 'x';
             playerTwoBoard[index] = 'x';
@@ -378,6 +413,29 @@ const gameBoard = (() => {
           }
         } else {
           console.log('Already taken');
+        }
+        if (newGame.playerTwo.mode === 'Bot' && lastPlayer === newGame.playerOne) {
+          console.log(board[Math.floor(Math.random() * board.length)]);
+          let i = 0;
+          while (i < 1) {
+            const randomIndex = Math.floor(Math.random() * board.length);
+            console.log(randomIndex);
+            if (board[randomIndex] === '') {
+              console.log('praein?2');
+              lastPlayer = newGame.playerTwo;
+              board[randomIndex] = 'x';
+              playerTwoBoard[randomIndex] = 'x';
+              lastPlayer.addMark(gameDivs[randomIndex], lastPlayer);
+              if (checkWinner(playerTwoBoard)) {
+                if (checkWinner(playerTwoBoard) === 'tie') {
+                  endGame('tie');
+                } else {
+                  endGame(lastPlayer);
+                }
+              }
+              i += 1;
+            }
+          }
         }
       });
     });
