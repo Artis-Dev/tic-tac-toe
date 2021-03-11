@@ -302,23 +302,21 @@ const gameBoard = (() => {
 
   const checkWinner = (playerBoard) => {
     if (playerBoard[0] === 'x' && playerBoard[1] === 'x' && playerBoard[2] === 'x') {
-      return true;
-    } if (playerBoard[0] === 'x' && playerBoard[1] === 'x' && playerBoard[2] === 'x') {
-      return true;
+      return 'win';
     } if (playerBoard[3] === 'x' && playerBoard[4] === 'x' && playerBoard[5] === 'x') {
-      return true;
+      return 'win';
     } if (playerBoard[6] === 'x' && playerBoard[7] === 'x' && playerBoard[8] === 'x') {
-      return true;
+      return 'win';
     } if (playerBoard[0] === 'x' && playerBoard[3] === 'x' && playerBoard[6] === 'x') {
-      return true;
+      return 'win';
     } if (playerBoard[1] === 'x' && playerBoard[4] === 'x' && playerBoard[7] === 'x') {
-      return true;
+      return 'win';
     } if (playerBoard[2] === 'x' && playerBoard[5] === 'x' && playerBoard[8] === 'x') {
-      return true;
+      return 'win';
     } if (playerBoard[0] === 'x' && playerBoard[4] === 'x' && playerBoard[8] === 'x') {
-      return true;
+      return 'win';
     } if (playerBoard[2] === 'x' && playerBoard[4] === 'x' && playerBoard[6] === 'x') {
-      return true;
+      return 'win';
     } if (board.toString() === ['x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x'].toString()) {
       return 'tie';
     }
@@ -338,14 +336,7 @@ const gameBoard = (() => {
       element.classList.remove('red', 'green');
     });
 
-    if (winner === 'tie') {
-      playerOneCondition.classList.remove('winner', 'loser');
-      playerTwoCondition.classList.remove('loser', 'winner');
-      playerOneCondition.classList.add('tie');
-      playerTwoCondition.classList.add('tie');
-      playerOneCondition.textContent = 'TIE';
-      playerTwoCondition.textContent = 'TIE';
-    } else if (winner === newGame.playerOne) {
+    if (winner === newGame.playerOne) {
       playerOneCondition.classList.remove('loser', 'tie');
       playerTwoCondition.classList.remove('winner', 'tie');
       playerOneCondition.classList.add('winner');
@@ -359,6 +350,13 @@ const gameBoard = (() => {
       playerTwoCondition.classList.add('winner');
       playerOneCondition.textContent = 'LOSER';
       playerTwoCondition.textContent = 'WINNER';
+    } else if (winner === 'tie') {
+      playerOneCondition.classList.remove('winner', 'loser');
+      playerTwoCondition.classList.remove('loser', 'winner');
+      playerOneCondition.classList.add('tie');
+      playerTwoCondition.classList.add('tie');
+      playerOneCondition.textContent = 'TIE';
+      playerTwoCondition.textContent = 'TIE';
     } else {
       playerOneCondition.classList.remove('winner', 'loser', 'tie');
       playerTwoCondition.classList.remove('winner', 'loser', 'tie');
@@ -390,12 +388,11 @@ const gameBoard = (() => {
             board[index] = 'x';
             playerOneBoard[index] = 'x';
             lastPlayer.addMark(element, lastPlayer);
-            if (checkWinner(playerOneBoard)) {
-              if (checkWinner(playerTwoBoard) === 'tie') {
-                endGame('tie');
-              } else {
-                endGame(lastPlayer);
-              }
+            if (checkWinner(playerOneBoard) === 'win') {
+              endGame(lastPlayer);
+              lastPlayer = newGame.playerTwo;
+            } if (checkWinner(playerTwoBoard) === 'tie') {
+              endGame('tie');
               lastPlayer = newGame.playerTwo;
             }
           } else if (newGame.playerTwo.mode === 'Human') {
@@ -403,25 +400,20 @@ const gameBoard = (() => {
             board[index] = 'x';
             playerTwoBoard[index] = 'x';
             lastPlayer.addMark(element, lastPlayer);
-            if (checkWinner(playerTwoBoard)) {
-              if (checkWinner(playerTwoBoard) === 'tie') {
-                endGame('tie');
-              } else {
-                endGame(lastPlayer);
-              }
+            if (checkWinner(playerTwoBoard) === 'win') {
+              endGame(lastPlayer);
+            } if (checkWinner(playerTwoBoard) === 'tie') {
+              endGame('tie');
             }
           }
         } else {
           console.log('Already taken');
         }
         if (newGame.playerTwo.mode === 'Bot' && lastPlayer === newGame.playerOne) {
-          console.log(board[Math.floor(Math.random() * board.length)]);
           let i = 0;
           while (i < 1) {
             const randomIndex = Math.floor(Math.random() * board.length);
-            console.log(randomIndex);
             if (board[randomIndex] === '') {
-              console.log('praein?2');
               lastPlayer = newGame.playerTwo;
               board[randomIndex] = 'x';
               playerTwoBoard[randomIndex] = 'x';
