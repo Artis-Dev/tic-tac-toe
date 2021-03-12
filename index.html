@@ -9,101 +9,14 @@
   <link href="css/fontawesome.min.css" rel="stylesheet">
   <link href="css/solid.min.css" rel="stylesheet">
   <link href="https://fonts.gstatic.com" rel="preconnect">
-  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Roboto:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
     <h1><span class="tic">TIC</span> <span class="tac">TAC</span> <span class="toe">TOE</span></h1>
   </header>
 
-  <main>
-    <!-- New Game Modal -->
-    <div id="new-game-modal" class="modal">
-      <div class="modal-content">
-
-        <h2>NEW GAME</h2>
-
-        <div class="sep"></div>
-        <div class="create-players">
-          <div class="custom-player" id="player-one">
-            <div class="player-one-heading">
-              <h3>Player One</h3>
-            </div>
-            <label class="player-name-label" for="player-one-name">NAME</label>
-            <input type="text" name="player-one-name" class="player-name" id="player-one-name" autocomplete="off" placeholder="Type your name">
-            <p class="player-one-error error-name"></p>
-            <p>CHARACTER</p>
-            <div class="appearances">
-              <div class="appearance"><i class="fas fa-ear-muffs"></i></i></div>
-              <div class="appearance"><i class="fas fa-hat-wizard"></i></div>
-              <div class="appearance"><i class="fas fa-helmet-battle"></i></div>
-              <div class="appearance"><i class="fas fa-hat-cowboy"></i></div>
-            </div>
-            <p class="player-one-error error-appearance"></p>
-            <p>MARK</p>
-            <div class="marks">
-              <div class="mark"><i class="fas fa-times"></i></div>
-              <div class="mark"><i class="fas fa-staff"></i></div>
-              <div class="mark"><i class="fas fa-sword"></i></div>
-              <div class="mark"><i class="fas fa-bow-arrow"></i></div>
-            </div>
-            <p class="player-one-error error-mark"></p>
-          </div>
-          <div class="custom-player" id="player-two">
-            <div class="player-two-heading">
-              <button class="player-two-button"><h3>Choose</h3></button>
-              <div class="player-two-list">
-                <h3>Human</h3>
-                <h3>Bot</h3>
-              </div>
-            </div>
-            <p class="player-two-error error-mode"></p>
-            <div class='player-two-human'>
-              <label class="player-name-label" for="player-two-name">NAME</label>
-              <input type="text" name="player-two-name" class="player-name" id="player-two-name" autocomplete="off" placeholder="Type your name">
-              <p class="player-two-error error-name"></p>
-              <p>CHARACTER</p>
-              <div class="appearances">
-                <div class="appearance"><i class="fas fa-hat-winter"></i></div>
-                <div class="appearance"><i class="fas fa-hat-witch"></i></div>
-                <div class="appearance"><i class="fas fa-hood-cloak"></i></div>
-                <div class="appearance"><i class="fas fa-crown"></i></div>
-              </div>
-              <p class="player-two-error error-appearance"></p>
-              <p>MARK</p>
-              <div class="marks">
-                <div class="mark"><i class="fas fa-circle"></i></div>
-                <div class="mark"><i class="fas fa-wand-magic fa-flip-horizontal"></i></div>
-                <div class="mark"><i class="fas fa-mace fa-flip-horizontal"></i></div>
-                <div class="mark"><i class="fas fa-axe-battle rotate-45"></i></div>
-              </div>
-              <p class="player-two-error error-mark"></p>
-            </div>
-
-            <div class='player-two-bot'>
-              <label class="player-name-label" for="player-two-name">NAME</label>
-              <div class="bot-name"><h3>Robot</h3></div>
-              <p>CHARACTER</p>
-              <div class="appearances">
-                <div class="appearance selected"><i class="fas fa-robot"></i></div>
-              </div>
-              <p>MARK</p>
-              <div class="marks">
-                <div class="mark selected"><i class="fas fa-raygun fa-flip-horizontal"></i></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="sep"></div>
-
-        <div class="button-right">
-          <button id="reset" type="button">RESET</button><button id="start-game" type="submit" href="#">START GAME</button>
-        </div>
-
-      </div>
-    </div>
-    <!-- /Modal -->
-
+  <main class="main-container">
     <div class="player-one-section">
       <h2 class="player-section-name">PLAYER ONE</h2>
       <div class="player-section-appearance"></div>
@@ -121,6 +34,102 @@
       <button id="restart" type="button">RESTART ROUND</button><button id="new-game" type="button">NEW GAME</button>
     </div>
   </main>
+
+  <footer class="credits">Built by <a href="https://github.com/Artis-Dev/" target="_blank">ArtisDev</a> <span class="link-sep">|</span> <a href="https://github.com/Artis-Dev/tic-tac-toe/" target="_blank">Source code</a></footer>
+
+  <!-- New Game Modal -->
+  <div id="new-game-modal" class="modal">
+    <header>
+      <h1><span class="tic">TIC</span> <span class="tac">TAC</span> <span class="toe">TOE</span></h1>
+    </header>
+    <div class="modal-content">
+
+      <h2>NEW GAME</h2>
+
+      <div class="sep"></div>
+      <div class="create-players">
+        <div class="custom-player" id="player-one">
+          <div class="player-one-heading">
+            <h3>Player One</h3>
+          </div>
+          <label class="player-name-label" for="player-one-name">NAME</label>
+          <input type="text" name="player-one-name" class="player-name" id="player-one-name" autocomplete="off" placeholder="Type your name">
+          <p class="player-one-error error-name"></p>
+          <p>CHARACTER</p>
+          <div class="appearances">
+            <div class="appearance"><i class="fas fa-ear-muffs"></i></i></div>
+            <div class="appearance"><i class="fas fa-hat-wizard"></i></div>
+            <div class="appearance"><i class="fas fa-helmet-battle"></i></div>
+            <div class="appearance"><i class="fas fa-hat-cowboy"></i></div>
+          </div>
+          <p class="player-one-error error-appearance"></p>
+          <p>MARK</p>
+          <div class="marks">
+            <div class="mark"><i class="fas fa-times"></i></div>
+            <div class="mark"><i class="fas fa-staff"></i></div>
+            <div class="mark"><i class="fas fa-sword"></i></div>
+            <div class="mark"><i class="fas fa-bow-arrow"></i></div>
+          </div>
+          <p class="player-one-error error-mark"></p>
+        </div>
+        <div class="custom-player" id="player-two">
+          <div class="player-two-heading">
+            <button class="player-two-button"><h3>Choose</h3></button>
+            <div class="player-two-list">
+              <h3>Human</h3>
+              <h3>Bot</h3>
+            </div>
+          </div>
+          <p class="player-two-error error-mode"></p>
+          <div class='player-two-human'>
+            <label class="player-name-label" for="player-two-name">NAME</label>
+            <input type="text" name="player-two-name" class="player-name" id="player-two-name" autocomplete="off" placeholder="Type your name">
+            <p class="player-two-error error-name"></p>
+            <p>CHARACTER</p>
+            <div class="appearances">
+              <div class="appearance"><i class="fas fa-hat-winter"></i></div>
+              <div class="appearance"><i class="fas fa-hat-witch"></i></div>
+              <div class="appearance"><i class="fas fa-hood-cloak"></i></div>
+              <div class="appearance"><i class="fas fa-crown"></i></div>
+            </div>
+            <p class="player-two-error error-appearance"></p>
+            <p>MARK</p>
+            <div class="marks">
+              <div class="mark"><i class="fas fa-circle"></i></div>
+              <div class="mark"><i class="fas fa-wand-magic fa-flip-horizontal"></i></div>
+              <div class="mark"><i class="fas fa-mace fa-flip-horizontal"></i></div>
+              <div class="mark"><i class="fas fa-axe-battle rotate-45"></i></div>
+            </div>
+            <p class="player-two-error error-mark"></p>
+          </div>
+
+          <div class='player-two-bot'>
+            <label class="player-name-label" for="player-two-name">NAME</label>
+            <div class="bot-name"><h3>Robot</h3></div>
+            <p>CHARACTER</p>
+            <div class="appearances">
+              <div class="appearance selected"><i class="fas fa-robot"></i></div>
+            </div>
+            <p>MARK</p>
+            <div class="marks">
+              <div class="mark selected"><i class="fas fa-raygun fa-flip-horizontal"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sep"></div>
+
+      <div class="buttons-center">
+        <button id="reset" type="button">RESET</button><button id="start-game" type="submit" href="#">START GAME</button>
+      </div>
+
+      <div class="sep"></div>
+
+      <div class="credits">Built by <a href="https://github.com/Artis-Dev/" target="_blank">ArtisDev</a> <span class="link-sep">|</span> <a href="https://github.com/Artis-Dev/tic-tac-toe/" target="_blank">Source code</a></div>
+
+    </div>
+  </div>
+  <!-- /Modal -->
 
   <script src="app.js"></script>
 </body>

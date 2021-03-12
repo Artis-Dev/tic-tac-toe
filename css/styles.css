@@ -18,13 +18,12 @@ body {
 
 h1, h2, h3 {
   font-family: 'Josefin Sans', sans-serif;
+  font-weight: 700;
 }
 
 header h1 {
-  position: relative;
   font-size: 52px;
   text-align: center;
-  z-index: 2;
 }
 
 h3 {
@@ -36,9 +35,9 @@ h3 {
 .toe { color: var(--green); }
 
 main {
-  display: grid;
+  display: none;
   justify-content: center;
-  margin-top: 40px;
+  margin-top: 50px;
   grid-template-columns: auto 344px auto;
   grid-template-rows: 344px auto;
   grid-template-areas:
@@ -62,7 +61,7 @@ main {
 
 .modal-content {
   max-width: 800px;
-  margin: 135px auto 50px;
+  margin: 50px auto 50px;
   padding: 16px;
   background-color: var(--white);
   border: solid 1px rgba(0,0,0,.15);
@@ -97,8 +96,8 @@ main {
   transition: all .3s;
 }
 
-.modal .button-right {
-  text-align: right;
+.modal .buttons-center {
+  text-align: center;
 }
 
 #start-game {
@@ -308,6 +307,9 @@ main {
   justify-content: center;
   grid-template-columns: repeat(3, auto);
   grid-gap: 6px;
+  max-width: 344px;
+  max-height: 344px;
+  margin: 0 auto;
   background-color: var(--purple);
   border: solid 16px var(--yellow);
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
@@ -403,6 +405,34 @@ main {
   margin-left: 16px;
 }
 
+footer {
+  padding: 6px;
+  margin: 32px auto;
+  width: 344px;
+  background-color: var(--yellow);
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.credits {
+  text-align: center;
+}
+
+.credits a {
+  color: var(--red);
+  text-decoration: none;
+  transition: all .3s;
+}
+
+.credits a:hover {
+  color: var(--hover-red);
+  text-decoration: underline;
+  transition: all .3s;
+}
+
+.link-sep {
+  color: rgba(0,0,0,.15);
+}
+
 /* Media queries */
 @media screen and (max-width: 833px) {
   .custom-player:first-child {
@@ -410,8 +440,30 @@ main {
     border-bottom: solid 1px rgba(0,0,0,.15);
     padding-bottom: 16px;
   }
+
   .custom-player:last-child {
     padding-top: 16px;
     padding-left: 0;
+  }
+
+  main {
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      "board board"
+      "player-one player-two"
+      "controls controls";
+  }
+
+  .player-one-section {
+    grid-area: player-one;
+    margin-right: 32px;
+    margin-top: 32px;
+  }
+
+  .player-two-section {
+    grid-area: player-two;
+    margin-top: 32px;
+    margin-left: 0;
   }
 }

@@ -1,13 +1,9 @@
-/* eslint-disable no-console */
 // Players factory
 const createPlayers = (name, appearance, mark, mode) => ({
   name,
   appearance,
   mark,
   mode,
-  sayHello() {
-    return console.log(`Hello! I'm ${this.appearance} my name is ${this.name} I have ${this.mark} (${this.mode})`);
-  },
   addMark(element, lastPlayer) {
     const el = element;
     if (lastPlayer === newGame.playerOne) {
@@ -21,7 +17,6 @@ const createPlayers = (name, appearance, mark, mode) => ({
       el.appendChild(markIcon);
       el.classList.add('red');
     }
-    console.log(lastPlayer.name);
   },
 });
 
@@ -29,6 +24,7 @@ const createPlayers = (name, appearance, mark, mode) => ({
 const newGame = (() => {
   // DOM elements
   const newGameModal = document.querySelector('#new-game-modal');
+  const mainContainer = document.querySelector('.main-container');
   const startGameButton = document.querySelector('#start-game');
   const resetButton = document.querySelector('#reset');
   const playerTwoHeading = document.querySelector('.player-two-button h3');
@@ -57,8 +53,8 @@ const newGame = (() => {
   const playerOneSectionMark = document.querySelector('.player-one-section .player-section-mark');
   const playerTwoSectionMark = document.querySelector('.player-two-section .player-section-mark');
 
-  const playerOne = createPlayers('Player One', 'fas fa-ear-muffs', 'fas fa-times', 'Human');
-  const playerTwo = createPlayers('Player Two', 'fas fa-hat-winter', 'fas fa-circle', '');
+  const playerOne = createPlayers('Player One', '', '', '');
+  const playerTwo = createPlayers('Player Two', '', '', '');
 
   let newPlayerTwoName;
   let newPlayerOneAppearance;
@@ -170,13 +166,11 @@ const newGame = (() => {
     playerOne.name = playerOneName.value;
     playerOne.appearance = newPlayerOneAppearance;
     playerOne.mark = newPlayerOneMark;
-    playerOne.sayHello();
     // Player two setup
     playerTwo.mode = playerTwoHeading.textContent;
     playerTwo.name = newPlayerTwoName || playerTwoName.value;
     playerTwo.appearance = newPlayerTwoAppearance;
     playerTwo.mark = newPlayerTwoMark;
-    playerTwo.sayHello();
     // Player's sections setup
     playerOneSectionName.textContent = playerOne.name;
     playerTwoSectionName.textContent = playerTwo.name;
@@ -209,6 +203,7 @@ const newGame = (() => {
         if (playerTwoName.value !== '' || newPlayerTwoName !== undefined) {
           setupGame();
           newGameModal.style.display = 'none';
+          mainContainer.style.display = 'grid';
         }
       }
       // Mode error
@@ -276,6 +271,8 @@ const newGame = (() => {
     playerOne,
     playerTwo,
     newGameModal,
+    mainContainer,
+    reset,
   };
 })();
 
@@ -332,7 +329,8 @@ const gameBoard = (() => {
     playerTwoBoard = [];
 
     gameDivs.forEach((element) => {
-      element.textContent = '';
+      const div = element;
+      div.textContent = '';
       element.classList.remove('red', 'green');
     });
 
@@ -372,7 +370,9 @@ const gameBoard = (() => {
 
     newGameButton.addEventListener('click', () => {
       endGame();
+      newGame.reset('hard');
       newGame.newGameModal.style.display = 'block';
+      newGame.mainContainer.style.display = 'none';
     });
   };
   controls();
@@ -406,8 +406,6 @@ const gameBoard = (() => {
               endGame('tie');
             }
           }
-        } else {
-          console.log('Already taken');
         }
         if (newGame.playerTwo.mode === 'Bot' && lastPlayer === newGame.playerOne) {
           let i = 0;
