@@ -317,7 +317,6 @@ const gameBoard = (() => {
     } if (board.toString() === ['x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x'].toString()) {
       return 'tie';
     }
-    return false;
   };
 
   const endGame = (winner) => {
